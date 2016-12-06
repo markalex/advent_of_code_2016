@@ -6,11 +6,11 @@ import string
 
 def process(input):
     regex = re.compile('([\w-]+)-([\d]{3})\[([\w]{5})\]')
-    rooms = []
 
     for line in input.splitlines():
         m = regex.match(line)
         name, num, check = m.group(1), int(m.group(2)), m.group(3)
+        
         if weighted_sort(name.replace('-', ''))[0:5] == check:
             decrypted = ''.join([decrypt(y, num) for y in name])
             if decrypted == 'northpole object storage':
